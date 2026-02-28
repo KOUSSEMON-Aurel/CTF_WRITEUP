@@ -64,8 +64,8 @@ La mention "a vulnerability that allows a discount code to exceed its redemption
 Le script Bash suivant a été utilisé pour exploiter la vulnérabilité :
 
 ```bash
-cookie_file="/home/aurel/.gemini/tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookies.txt"
-response_file="/home/aurel/.gemini/tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/response.html"
+cookie_file="/home/aurel/./tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/cookies.txt"
+response_file="/home/aurel/./tmp/091625b5c4be2ac601a01064fd23cdc48d63136239a5aebd676191c3619b5def/response.html"
 url="https://loved-blockbuster.europe1.hackviser.space"
 reset_url="https://loved-blockbuster.europe1.hackviser.space/reset.php"
 
